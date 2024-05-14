@@ -28,7 +28,7 @@ public class ClienteService {
 	public Cliente findById(Integer id) {
 		Optional<Cliente> obj = repository.findById(id);
 		return obj.orElseThrow(
-				() -> new ObjectNotFoundException("Objeto não encatrado!" + id + ", Tipo" + Cliente.class.getName()));
+				() -> new ObjectNotFoundException("Objeto não encontrado! " + id + ", Tipo" + Cliente.class.getName()));
 	}
 
 	public List<Cliente> findAll() {
@@ -61,6 +61,7 @@ public class ClienteService {
 		if (obj.getList().size() > 0) {
 			throw new DataIntegratyViolationException("Cliente possui um serviço agendado!");
 		}
+		repository.deleteById(id);
 	}
 
 	private Pessoa findByCPF(ClienteDTO objDTO) {

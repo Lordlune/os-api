@@ -29,12 +29,20 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService service;
 
+	/*
+	 * Find By Id Cliente
+	 */
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ClienteDTO> findById(@PathVariable Integer id) {
 		ClienteDTO objDTO = new ClienteDTO(service.findById(id));
 		return ResponseEntity.ok().body(objDTO);
 	}
 
+	/*
+	 * Find All Cliente
+	 */
+	
 	@GetMapping
 	public ResponseEntity<List<ClienteDTO>> findAll() {
 
@@ -44,6 +52,10 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 
+	/*
+	 * Post Cliente
+	 */
+	
 	@PostMapping
 	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO objDTO) {
 		Cliente newObj = service.create(objDTO);
@@ -53,11 +65,19 @@ public class ClienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	/*
+	 * Put Cliente
+	 */
+	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @Valid @RequestBody ClienteDTO objDTO){
 		ClienteDTO newObj = new ClienteDTO(service.update(id, objDTO));
 		return ResponseEntity.ok().body(newObj);
 	}
+	
+	/*
+	 * Delete Cliente
+	 */
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id){

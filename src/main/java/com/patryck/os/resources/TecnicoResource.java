@@ -29,12 +29,20 @@ public class TecnicoResource {
 	@Autowired
 	private TecnicoService service;
 
+	/*
+	 * Find By Id Tecnico
+	 */
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
 		TecnicoDTO objDTO = new TecnicoDTO(service.findById(id));
 		return ResponseEntity.ok().body(objDTO);
 	}
 
+	/*
+	 * Find All Tecnico
+	 */
+	
 	@GetMapping
 	public ResponseEntity<List<TecnicoDTO>> findAll() {
 
@@ -44,6 +52,10 @@ public class TecnicoResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 
+	/*
+	 * Post Tecnico
+	 */
+	
 	@PostMapping
 	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO) {
 		Tecnico newObj = service.create(objDTO);
@@ -53,11 +65,19 @@ public class TecnicoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	/*
+	 * Put Id Tecnico
+	 */
+	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDTO){
 		TecnicoDTO newObj = new TecnicoDTO(service.update(id, objDTO));
 		return ResponseEntity.ok().body(newObj);
 	}
+	
+	/*
+	 * Delete Tecnico
+	 */
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
