@@ -20,7 +20,7 @@ public class TestConfig {
 	
     @Bean
     boolean instanciaDB() {
-    	if(ddl.equals("update")) {
+    	if(ddl.equals("create")) {
     		this.dbService.instanciaDB();
     	}
 		return true;
